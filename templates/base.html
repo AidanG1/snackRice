@@ -23,17 +23,17 @@
             crossorigin="anonymous"></script>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
-    {#    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'image/favicon.ico' %}">#}
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'image/favicon.ico' %}">
 </head>
 <body>
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <a href="{% url 'servery_list' %}"
            class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
-            <img class="bi me-2" width="45" height="36" role="img" aria-label="Bootstrap"
-                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.freebiesupply.com%2Flogos%2Flarge%2F2x%2Froadrunner-logo-png-transparent.png&f=1&nofb=1"
+            <img class="bi me-2" width="60" height="60" role="img" aria-label="Bootstrap"
+                 src="/static/image/images/Icon.png"
                  alt="Logo">
-        <h3>Snack Rice</h3>
+            <h3>Snack Rice</h3>
         </a>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li class="px-2 nav-link link-dark">{{ current_meal }}</li>

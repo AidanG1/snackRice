@@ -37,6 +37,9 @@ class Servery(models.Model):
         verbose_name_plural = 'Serveries'
         ordering = ['name']
 
+    def __str__(self):
+        return self.name
+
     @property
     def open_now(self):
         if current_meal_models() == 'Friday Dinner':
@@ -59,7 +62,7 @@ class Servery(models.Model):
     @property
     def current_meal(self):
         meals = Meal.objects.filter(servery=self, meal_date=datetime.date.today())
-        for meal in meals:
+        for meal in meals.order_by('-meal_end_time'):
             if datetime.datetime.now().time() <= meal.meal_end_time:
                 return meal
         return meals.last()
@@ -84,6 +87,9 @@ class Dish(models.Model):
     vegan = models.BooleanField(default=False)
     vegetarian = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name
+
 
 class Meal(models.Model):
     meal_choices = (
@@ -98,11 +104,17 @@ class Meal(models.Model):
     meal_start_time = models.TimeField()
     meal_end_time = models.TimeField()
 
+    def __str__(self):
+        return f'{self.servery.name} {self.meal_type} on {self.meal_date}'
+
 
 class DishAppearance(models.Model):
     uuid = ShortUUIDField(primary_key=True)
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.dish} {self.meal}'
 
     @property
     def reviews(self):

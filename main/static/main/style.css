@@ -160,20 +160,20 @@ footer {
 .card-group {
     display: inline-block;
 }
-@media (max-width: 720px) {
-    .card-group {
-        width: 100%;
-    }
-}
+/*@media (max-width: 720px) {*/
+/*    .card-group {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
 
-@media (min-width: 720px) and (max-width: 1300px) {
-    .card-group {
-        width: 47%;
-    }
-}
+/*@media (min-width: 720px) and (max-width: 1300px) {*/
+/*    .card-group {*/
+/*        width: 47%;*/
+/*    }*/
+/*}*/
 
-@media (min-width: 1300px) {
-    .card-group {
-        width: 32%;
-    }
-}
+/*@media (min-width: 1300px) {*/
+/*    .card-group {*/
+/*        width: 32%;*/
+/*    }*/
+/*}*/

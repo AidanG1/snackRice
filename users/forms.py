@@ -15,4 +15,4 @@ class RegisterForm(UserCreationForm):
 class SettingsForm(UserCreationForm):
     class Meta:
         model = Profile
-        fields = ["phone_number"]
+        fields = ["phone_number", 'walking_factor', 'food_factor']
