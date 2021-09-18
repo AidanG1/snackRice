@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, SettingsForm
+from django.views.generic import ListView
+from .models import Profile
 
 
 # Create your views here.
@@ -26,3 +28,4 @@ def settings(response):
         form = SettingsForm()
 
     return render(response, "profile.html", {"form": form})
+

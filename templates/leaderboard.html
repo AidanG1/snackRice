@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load humanize %}
 
-</body>
-</html>
+{% block content %}
+    <body>
+    <div class="container">
+        <h1>Leaderboard</h1>
+        <div class="profile-list">
+            {% for profile in profiles %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div style="display: inline-block; float: left" class="mr-3">
+                            <h3 class="card-title">{{ profile.rank|ordinal }}:
+                                <a href="{% url 'profile_detail' profile.id %}">{{ profile.user|slice:":30" }}</a>
+                            </h3>
+                            <p class="card-text">Number of Reviews: {{ profile.number_of_reviews }},
+                            <p class="card-text">Average Stars: {{ profile.average_stars|floatformat:2 }}%</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <p class="pagination">
+                    <a class="next-page" href="?page={{ page_obj.next_page_number }}">More...</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- jQuery CDN hosted by Google -->
+    <!-- jScroll plug-in CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+
+    <script>
+        jQuery(function ($) {
+            var $list = $('.profile-list');
+            $list.jscroll({
+                loadingHtml: '<div class="d-flex justify-content-center mb-2">\n' +
+                    '  <div class="spinner-border text-warning" role="status">\n' +
+                    '    <span class="sr-only">Loading...</span>\n' +
+                    '  </div>\n' +
+                    '</div>',
+                padding: 100,
+                pagingSelector: '.pagination',
+                nextSelector: 'a.next-page:last',
+                contentSelector: '.card,.pagination'
+            });
+        });
+    </script>
+    </body>
+{% endblock %}

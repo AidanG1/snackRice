@@ -7,5 +7,6 @@ urlpatterns = [
     path('leaderboard/', views.Leaderboard.as_view(), name='leaderboard'),
     path('d/<str:pk>', views.DishAppearanceDetail.as_view(), name='dish_appearance_detail'),
     path('m/<str:pk>', views.MealDetail.as_view(), name='meal_detail'),
-    path('review/', views.review, name='review')
+    path('review/', views.review, name='review'),
+    path('p/<str:pk>', views.ProfileDetail.as_view(), name='profile_detail')
 ]
