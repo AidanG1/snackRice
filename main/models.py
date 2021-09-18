@@ -110,7 +110,11 @@ class DishAppearance(models.Model):
 
     @property
     def average_stars(self):
-        return self.reviews.aggregate(Avg('stars'))['stars__avg']
+        avg = self.reviews.aggregate(Avg('stars'))['stars__avg']
+        if isinstance(avg, type(None)):
+            return 0
+        else:
+            return avg
 
     @property
     def review_count(self):

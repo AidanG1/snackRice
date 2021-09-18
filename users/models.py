@@ -9,6 +9,8 @@ from main.models import Review
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = PhoneNumberField(null=True, blank=True)
+    walking_factor = models.IntegerField(default=5)
+    food_factor = models.IntegerField(default=5)
 
     @property
     def reviews(self):
