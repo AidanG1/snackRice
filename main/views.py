@@ -41,16 +41,22 @@ class MealDetail(DetailView):
     #                                          meal_end_time__lte=datetime.datetime.now().time())
 
 
+class Leaderboard(ListView):
+    model = User
+    context_object_name = 'users'
+    template_name = 'leaderboard.html'
+
+
 @login_required()
 @transaction.atomic
 def review(request):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
-        Review.objects.create(user=request.user, stars=form.cleaned_data.get('stars'),
-                              review_text=form.cleaned_data.get('review_text'),
-                              dish_appearance_id=request.get_full_path().split('/')[-1])
         if form.is_valid():
-            return redirect('servery_list')
+            Review.objects.create(user=request.user, stars=form.cleaned_data.get('stars'),
+                                  review_text=form.cleaned_data.get('review_text'),
+                                  dish_appearance=DishAppearance.objects.get(pk=request.GET.get('dish', '')))
+            return redirect('dish_appearance_detail', request.GET.get('dish', ''))
     else:
         form = ReviewForm(request.user)
     return render(request, 'dish_appearance_detail.html', {'form': form})

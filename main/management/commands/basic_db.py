@@ -15,7 +15,7 @@ class Command(BaseCommand):
              'open_friday_dinner': True, 'open_saturday_breakfast': False, 'open_saturday_lunch': False,
              'open_saturday_dinner': False, 'open_sunday_breakfast': True, 'open_sunday_lunch': True,
              'open_sunday_dinner': True},
-            {'slug': 'siebel', 'name': 'Siebel Servery',
+            {'slug': 'seibel', 'name': 'Seibel Servery',
              'image': 'https://dining.rice.edu/sites/g/files/bxs4236/files/styles/page_hero_image/public/2019-12/seibel-servery.jpg.jpeg?itok=6v_-ngCG',
              'open_friday_dinner': True, 'open_saturday_breakfast': True, 'open_saturday_lunch': True,
              'open_saturday_dinner': True, 'open_sunday_breakfast': True, 'open_sunday_lunch': True,

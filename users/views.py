@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, SettingsForm
 
 
 # Create your views here.
@@ -9,8 +9,20 @@ def register(response):
         if form.is_valid():
             form.save()
 
-        return redirect("/")
+        return redirect("login/")
     else:
         form = RegisterForm()
 
     return render(response, "register.html", {"form": form})
+
+
+def settings(response):
+    if response.method == "POST":
+        form = SettingsForm(response.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("profile/")
+    else:
+        form = SettingsForm()
+
+    return render(response, "profile.html", {"form": form})

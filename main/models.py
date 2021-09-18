@@ -13,7 +13,7 @@ def current_meal_models():
     if datetime.datetime.now().time().hour < 10 or (
             datetime.datetime.now().time().hour == 10 and datetime.datetime.now().time().minute <= 30):
         meal = 'Breakfast'
-    elif datetime.datetime.now().time().hour <= 2 and datetime.datetime.now().time().minute <= 0:
+    elif datetime.datetime.now().time().hour <= 14 and datetime.datetime.now().time().minute <= 0:
         meal = 'Lunch'
     else:
         meal = 'Dinner'
@@ -35,6 +35,7 @@ class Servery(models.Model):
 
     class Meta:
         verbose_name_plural = 'Serveries'
+        ordering = ['name']
 
     @property
     def open_now(self):

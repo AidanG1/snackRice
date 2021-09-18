@@ -6,18 +6,18 @@
     <h2>
         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
              alt="Star" class="star">
-        Dish Appearance: {{ dish_appearance.average_stars }}/10 <span
+        Dish Appearance: {{ dish_appearance.average_stars }}/5 <span
             class="text-muted">{{ dish_appearance.review_count }} reviews</span>
     </h2>
     <h2>
         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
              alt="Star" class="star">
         {% with overall_dish=dish_appearance.overall_rating_count_average %}
-            Overall Dish: {{ overall_dish.average }}/10 <span
+            Overall Dish: {{ overall_dish.average }}/5 <span
                 class="text-muted">{{ overall_dish.count }} reviews</span>
         {% endwith %}
     </h2>
-    <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
+    <div class="rounded shadow-sm p-4 mb-4">
         <h5 class="mb-1">All Ratings and Reviews</h5>
         {% for review in dish_appearance.reviews %}
             <div class="reviews-members pt-4 pb-4">
@@ -37,15 +37,15 @@
             <hr>
         {% endfor %}
     </div>
-    <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
+    <div class="rounded shadow-sm p-4 mb-5">
         <h5 class="mb-4">Leave Review for {{ dish_appearance.dish.name }}</h5>
-        <form method="POST" action="{% url 'review' %}">
+        <form method="POST" action="{% url 'review' %}?dish={{ dish_appearance.uuid }}">
             {% csrf_token %}
             <fieldset class="form-group">
                 {{ review_form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-primary btn-sm" type="button"> Submit Review</button>
+                <button class="btn btn-primary btn-sm" type="submit"> Submit Review</button>
             </div>
         </form>
     </div>

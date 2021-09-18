@@ -14,7 +14,9 @@
                              alt="{{ dish_appearance.dish.name }}">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title"><a href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{{ dish_appearance.dish.name }}</a></h5>
+                        <h5 class="card-title"><a
+                                href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{{ dish_appearance.dish.name }}</a>
+                        </h5>
                     </div>
                 </div>
             {% endfor %}

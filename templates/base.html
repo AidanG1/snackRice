@@ -54,7 +54,6 @@
             const COLOR_MODE_KEY = '--color-mode';
 
             const modeToggleButton = document.querySelector('.js-mode-toggle');
-            const modeToggleText = document.querySelector('.js-mode-toggle-text');
             const modeStatusElement = document.querySelector('.js-mode-status');
 
             const getCSSCustomProp = (propKey) => {
@@ -102,7 +101,6 @@
             }
 
             const setButtonLabelAndStatus = currentSetting => {
-                modeToggleText.innerText = `Enable ${currentSetting === 'dark' ? 'light' : 'dark'} mode`;
                 modeStatusElement.innerText = `Color mode is now "${currentSetting}"`;
             }
 
@@ -116,6 +114,7 @@
         </script>
         <div class="col-md-3 text-end">
             {% if user.is_authenticated %}
+                <span>Logged in as <a href="{% url 'profile' %}">{{ user.username }}</a></span>
                 <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
             {% else %}
                 <a type="button" class="btn btn-outline-primary me-2" href="{% url 'login' %}">Login</a>
@@ -131,7 +130,7 @@
 <div class="footer">
     <footer>
         <h5 class="p-2">
-            Footer Content
+            Created by Aidan Gerber, Ian Rundle, Carl Hernandez, and Phoebe Scaccia
         </h5>
     </footer>
 </div>
