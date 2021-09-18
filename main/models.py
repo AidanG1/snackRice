@@ -5,6 +5,21 @@ from django.db.models import Avg
 import datetime
 
 
+def current_meal_models():
+    int_to_day = {
+        0: 'Monday', 1: 'Tuesday', 2: 'Wednesday', 3: 'Thursday', 4: 'Friday', 5: 'Saturday', 6: 'Sunday'
+    }
+    day = int_to_day[datetime.datetime.today().weekday()]
+    if datetime.datetime.now().time().hour < 10 or (
+            datetime.datetime.now().time().hour == 10 and datetime.datetime.now().time().minute <= 30):
+        meal = 'Breakfast'
+    elif datetime.datetime.now().time().hour <= 2 and datetime.datetime.now().time().minute <= 0:
+        meal = 'Lunch'
+    else:
+        meal = 'Dinner'
+    return f'{day} {meal}'
+
+
 class Servery(models.Model):
     uuid = ShortUUIDField(primary_key=True)
     slug = models.SlugField(unique=True)
@@ -20,6 +35,25 @@ class Servery(models.Model):
 
     class Meta:
         verbose_name_plural = 'Serveries'
+
+    @property
+    def open_now(self):
+        if current_meal_models() == 'Friday Dinner':
+            return self.open_friday_dinner
+        elif current_meal_models() == 'Saturday Breakfast':
+            return self.open_saturday_breakfast
+        elif current_meal_models() == 'Saturday Lunch':
+            return self.open_saturday_lunch
+        elif current_meal_models() == 'Saturday Dinner':
+            return self.open_saturday_dinner
+        elif current_meal_models() == 'Sunday Breakfast':
+            return self.open_sunday_breakfast
+        elif current_meal_models() == 'Sunday Lunch':
+            return self.open_sunday_lunch
+        elif current_meal_models() == 'Sunday Dinner':
+            return self.open_sunday_dinner
+        else:
+            return True
 
     @property
     def current_meal(self):

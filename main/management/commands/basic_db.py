@@ -13,7 +13,27 @@ class Command(BaseCommand):
              'image': 'https://dining.rice.edu/sites/g/files/bxs4236/files/styles/page_hero_image/public/2019-12/west-servery_0.jpg.jpeg?itok=JC0x_3bt',
              'open_friday_dinner': True, 'open_saturday_breakfast': False, 'open_saturday_lunch': False,
              'open_saturday_dinner': False, 'open_sunday_breakfast': True, 'open_sunday_lunch': True,
-             'open_sunday_dinner': True}
+             'open_sunday_dinner': True},
+            {'slug': 'siebel', 'name': 'Siebel Servery',
+             'image': 'https://dining.rice.edu/sites/g/files/bxs4236/files/styles/page_hero_image/public/2019-12/seibel-servery.jpg.jpeg?itok=6v_-ngCG',
+             'open_friday_dinner': True, 'open_saturday_breakfast': True, 'open_saturday_lunch': True,
+             'open_saturday_dinner': True, 'open_sunday_breakfast': True, 'open_sunday_lunch': True,
+             'open_sunday_dinner': True},
+            {'slug': 'baker', 'name': 'Baker Servery',
+             'image': 'https://dining.rice.edu/sites/g/files/bxs4236/files/styles/page_hero_image/public/2019-12/baker-servery.jpg.jpeg?itok=afyfCZPr',
+             'open_friday_dinner': False, 'open_saturday_breakfast': False, 'open_saturday_lunch': True,
+             'open_saturday_dinner': True, 'open_sunday_breakfast': False, 'open_sunday_lunch': False,
+             'open_sunday_dinner': False},
+            {'slug': 'south', 'name': 'South Servery',
+             'image': 'https://dining.rice.edu/sites/g/files/bxs4236/files/styles/page_hero_image/public/2019-12/south-servery.jpg.jpeg?itok=JVeTEsgf',
+             'open_friday_dinner': True, 'open_saturday_breakfast': False, 'open_saturday_lunch': False,
+             'open_saturday_dinner': False, 'open_sunday_breakfast': False, 'open_sunday_lunch': True,
+             'open_sunday_dinner': True},
+            {'slug': 'north', 'name': 'North Servery',
+             'image': 'https://dining.rice.edu/sites/g/files/bxs4236/files/styles/page_hero_image/public/2020-08/Rice-Brown-College_0.jpg.jpeg?itok=0YsxigYZ',
+             'open_friday_dinner': True, 'open_saturday_breakfast': True, 'open_saturday_lunch': True,
+             'open_saturday_dinner': True, 'open_sunday_breakfast': False, 'open_sunday_lunch': False,
+             'open_sunday_dinner': True},
         ]
         for servery in serveries:
             Servery.objects.get_or_create(slug=servery['slug'], name=servery['name'], image=servery['image'],
@@ -139,9 +159,11 @@ class Command(BaseCommand):
                        'mattis', ]
         for dish_appearance in DishAppearance.objects.all():
             for i in range(random.randrange(1, 10)):
+                user = random.choice(User.objects.all())
                 Review.objects.get_or_create(
                     dish_appearance=dish_appearance,
-                    user=random.choice(User.objects.all()),
+                    user=user,
                     stars=random.randrange(1, 11),
                     review_text=' '.join(random.sample(latin_words, 15))
                 )
+                print(f'Dish: {dish_appearance.dish.name}, user: {user}')

@@ -6,13 +6,21 @@
         {% for servery in serveries %}
             <div class="card m-2">
                 {% if servery.image is not None %}
-                    <img src="{{ servery.image }}" class="card-img-top" alt="{{ servery.name }}">
+                    <a href="{% url 'servery_detail' servery.slug %}"><img src="{{ servery.image }}"
+                                                                           class="card-img-top"
+                                                                           alt="{{ servery.name }}"></a>
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ servery.name }}</h5>
+                    <h5 class="card-title"><a href="{% url 'servery_detail' servery.slug %}">{{ servery.name }}</a></h5>
                     {% for dish_appearance in servery.current_dishes %}
-                        <p class="card-text">{{ dish_appearance.dish.name }}</p>
+                        <p class="card-text"><a href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{
+                            dish_appearance.dish.name }}</a></p>
                     {% endfor %}
+                    {% if servery.open_now %}
+                        <p class="card-text">Open for current meal</p>
+                    {% else %}
+                        <p class="card-text">Not open for current meal</p>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
