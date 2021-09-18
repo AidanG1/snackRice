@@ -1,22 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ meal.name }}</h1>
+    <h1>{{ meal.meal_type }}</h1>
+    <h2>Opens At {{ meal.meal_start_time }}, Closes At {{ meal.meal_end_time }}</h2>
     <div class="card-group content-row container-fluid">
-        {% if servery.current_dishes.count == 0 %}
+        {% if meal.servery.current_dishes.count == 0 %}
             <h2>No current dishes</h2>
         {% else %}
-            {% for dish_appearance in servery.current_dishes %}
+            {% for dish_appearance in meal.servery.current_dishes %}
                 <div class="card m-2">
                     {% if dish_appearance.dish.image is not None %}
                         <img src="{{ dish_appearance.dish.image }}" class="card-img-top"
                              alt="{{ dish_appearance.dish.name }}">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{ dish_appearance.dish.name }}</h5>
-                        {% for dish_appearance in servery.current_dishes %}
-                            <p class="card-text">{{ dish_appearance.dish.name }}</p>
-                        {% endfor %}
+                        <h5 class="card-title"><a href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{{ dish_appearance.dish.name }}</a></h5>
                     </div>
                 </div>
             {% endfor %}

@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from ...models import *
+from users.models import Profile
 import datetime, random
 from django.contrib.auth.models import User
 
@@ -103,7 +104,8 @@ class Command(BaseCommand):
             DishAppearance.objects.get_or_create(dish=dish, meal=random.choice(Meal.objects.all()))
             print(f'Dish Appearance: {dish.name}')
 
-        User.objects.get_or_create(username='Hi', password='w#$eO&oIFo8L')
+        user = User.objects.get_or_create(username='Hi', password='w#$eO&oIFo8L')[0]
+        Profile.objects.get_or_create(user=user)
         latin_words = ['Lorem',
                        'ipsum',
                        'dolor',

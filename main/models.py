@@ -121,7 +121,7 @@ class DishAppearance(models.Model):
         stars_list = []
         for appearance in appearances:
             reviews = Review.objects.filter(dish_appearance=appearance)
-            stars_list += reviews.values_list('stars')
+            stars_list += reviews.values_list('stars', flat=True)
         return stars_list
 
     @property

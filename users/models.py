@@ -7,7 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = PhoneNumberField()
+    phone_number = PhoneNumberField(null=True, blank=True)
 
 
 @receiver(post_save, sender=User)

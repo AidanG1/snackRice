@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.ServeryList.as_view(), name='servery_list'),
     path('d/<str:pk>', views.DishAppearanceDetail.as_view(), name='dish_appearance_detail'),
     path('m/<str:pk>', views.MealDetail.as_view(), name='meal_detail'),
+    path('review/', views.Review, name='review')
 ]
