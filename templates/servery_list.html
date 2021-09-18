@@ -2,10 +2,10 @@
 
 {% block content %}
     <h1>Serveries</h1>
-    <div class="card-group content-row container-fluid">
-        <div class="m-2">
-            {% for servery in serveries %}
-                <div class="card h-100 col">
+    <div class="card-group row container-fluid">
+        {% for servery in serveries %}
+            <div class="m-2 col" style="display:inline-block">
+                <div class="card h-100">
                     <h3 class="card-title"><a href="{% url 'servery_detail' servery.slug %}">{{ servery.name }}</a></h3>
                     {% if servery.image is not None %}
                         <a href="{% url 'servery_detail' servery.slug %}"><img src="{{ servery.image }}"
@@ -26,7 +26,7 @@
                         {% endfor %}
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
