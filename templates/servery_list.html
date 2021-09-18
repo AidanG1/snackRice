@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Serveries</h1>
+    <div class="card-group content-row container-fluid">
+        {% for servery in serveries %}
+            <div class="card m-2">
+                {% if servery.image is not None %}
+                    <img src="{{ servery.image }}" class="card-img-top" alt="{{ servery.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ servery.name }}</h5>
+                    {% for dish_appearance in servery.current_dishes %}
+                        <p class="card-text">{{ dish_appearance.dish.name }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
