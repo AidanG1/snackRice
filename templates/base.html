@@ -36,9 +36,84 @@
 
         </a>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li class="px-2 nav-link link-dark">{{ current_meal }}</li>
             <li><a href="{% url 'servery_list' %}" class="nav-link px-2 link-dark">Home</a></li>
-            <li>{{ current_meal }}</li>
         </ul>
+        <div class="user-toggle">
+            <div role="status" class="[ visually-hidden ][ js-mode-status ]"></div>
+            <button class="[ toggle-button ] [ js-mode-toggle ]">
+                <span class="toggle-button__icon" aria-hidden="true"></span>
+            </button>
+            {#      <span class="[ toggle-button__text ] [ js-mode-toggle-text ]"#}
+            {#      >Enable dark mode</span#}
+            {#      >#}
+        </div>
+        <script>
+            // https://piccalil.li/tutorial/create-a-user-controlled-dark-or-light-mode/
+            const STORAGE_KEY = 'user-color-scheme';
+            const COLOR_MODE_KEY = '--color-mode';
+
+            const modeToggleButton = document.querySelector('.js-mode-toggle');
+            const modeToggleText = document.querySelector('.js-mode-toggle-text');
+            const modeStatusElement = document.querySelector('.js-mode-status');
+
+            const getCSSCustomProp = (propKey) => {
+                let response = getComputedStyle(document.documentElement).getPropertyValue(propKey);
+
+                // Tidy up the string if there’s something to work with
+                if (response.length) {
+                    response = response.replace(/\'|"/g, '').trim();
+                }
+
+                // Return the string response by default
+                return response;
+            };
+
+            const applySetting = passedSetting => {
+                let currentSetting = passedSetting || localStorage.getItem(STORAGE_KEY);
+
+                if (currentSetting) {
+                    document.documentElement.setAttribute('data-user-color-scheme', currentSetting);
+                    setButtonLabelAndStatus(currentSetting);
+                } else {
+                    setButtonLabelAndStatus(getCSSCustomProp(COLOR_MODE_KEY));
+                }
+            }
+
+            const toggleSetting = () => {
+                let currentSetting = localStorage.getItem(STORAGE_KEY);
+
+                switch (currentSetting) {
+                    case null:
+                        currentSetting = getCSSCustomProp(COLOR_MODE_KEY) === 'dark' ? 'light' : 'dark';
+                        break;
+                    case 'light':
+                        currentSetting = 'dark';
+                        break;
+                    case 'dark':
+                        currentSetting = 'light';
+                        break;
+                }
+
+
+                localStorage.setItem(STORAGE_KEY, currentSetting);
+
+                return currentSetting;
+            }
+
+            const setButtonLabelAndStatus = currentSetting => {
+                modeToggleText.innerText = `Enable ${currentSetting === 'dark' ? 'light' : 'dark'} mode`;
+                modeStatusElement.innerText = `Color mode is now "${currentSetting}"`;
+            }
+
+            modeToggleButton.addEventListener('click', evt => {
+                evt.preventDefault();
+
+                applySetting(toggleSetting());
+            });
+
+            applySetting();
+        </script>
         <div class="col-md-3 text-end">
             {% if user.is_authenticated %}
                 <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Logout</a>

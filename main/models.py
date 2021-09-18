@@ -127,7 +127,12 @@ class DishAppearance(models.Model):
     @property
     def overall_rating_count_average(self):
         stars_list = self.overall_star_list
-        return {'average': sum(stars_list) / len(stars_list), 'count': len(stars_list)}
+        return_dict = {'count': len(stars_list)}
+        if len(stars_list) == 0:
+            return_dict['average'] = 0
+        else:
+            return_dict['average'] = sum(stars_list) / len(stars_list)
+        return return_dict
 
 
 class Review(models.Model):

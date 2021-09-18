@@ -28,11 +28,6 @@ class MealDetail(DetailView):
     template_name = 'meal_detail.html'
 
 
-class CurrentMealList(ListView):
-    model = Meal
-    context_object_name = 'meals'
-    template_name = 'current_meal_list.html'
-
     # def get_queryset(self):
     #     return super().get_queryset().filter(meal_start_time__gte=datetime.datetime.now().time(),
     #                                          meal_end_time__lte=datetime.datetime.now().time())

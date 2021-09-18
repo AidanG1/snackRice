@@ -11,16 +11,17 @@
                                                                            alt="{{ servery.name }}"></a>
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'servery_detail' servery.slug %}">{{ servery.name }}</a></h5>
-                    {% for dish_appearance in servery.current_dishes %}
-                        <p class="card-text"><a href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{
-                            dish_appearance.dish.name }}</a></p>
-                    {% endfor %}
+                    <h3 class="card-title"><a href="{% url 'servery_detail' servery.slug %}">{{ servery.name }}</a></h3>
                     {% if servery.open_now %}
-                        <p class="card-text">Open for current meal</p>
+                        <h5 class="card-text">Open for current meal</h5>
                     {% else %}
-                        <p class="card-text">Not open for current meal</p>
+                        <h5 class="card-text">Not open for current meal</h5>
                     {% endif %}
+                    {% for dish_appearance in servery.current_dishes %}
+                        <p class="card-text"><a
+                                href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{{ dish_appearance.dish.name }}</a>
+                        </p>
+                    {% endfor %}
                 </div>
             </div>
         {% endfor %}
