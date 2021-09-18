@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://snackrice.tech/"/>
+    {#    <meta property="og:image"#}
+    {#          content="http://res.cloudinary.com/dnmd9zoai/image/upload/c_scale,w_400/v1600885116/android-chrome-512x512_fopcph.png"/>#}
+    {#    <meta property="og:image:secure_url"#}
+    {#          content="https://res.cloudinary.com/dnmd9zoai/image/upload/c_scale,w_400/v1600885116/android-chrome-512x512_fopcph.png"/>#}
+    <meta property="og:image:width" content="512"/>
+    <meta property="og:image:height" content="512"/>
+    <meta property="og:description"
+          content="Snack Rice is ......................................................"/>
+    <title>Snack Rice</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    {#    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'image/favicon.ico' %}">#}
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"
+                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.freebiesupply.com%2Flogos%2Flarge%2F2x%2Froadrunner-logo-png-transparent.png&f=1&nofb=1"
+                 alt="Logo">
+
+        </a>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li class="px-2 nav-link link-dark">{{ current_meal }}</li>
+            <li><a href="{% url 'servery_list' %}" class="nav-link px-2 link-dark">Home</a></li>
+        </ul>
+        <div class="user-toggle">
+            <div role="status" class="[ visually-hidden ][ js-mode-status ]"></div>
+            <button class="[ toggle-button ] [ js-mode-toggle ]">
+                <span class="toggle-button__icon" aria-hidden="true"></span>
+            </button>
+            {#      <span class="[ toggle-button__text ] [ js-mode-toggle-text ]"#}
+            {#      >Enable dark mode</span#}
+            {#      >#}
+        </div>
+        <script>
+            // https://piccalil.li/tutorial/create-a-user-controlled-dark-or-light-mode/
+            const STORAGE_KEY = 'user-color-scheme';
+            const COLOR_MODE_KEY = '--color-mode';
+
+            const modeToggleButton = document.querySelector('.js-mode-toggle');
+            const modeToggleText = document.querySelector('.js-mode-toggle-text');
+            const modeStatusElement = document.querySelector('.js-mode-status');
+
+            const getCSSCustomProp = (propKey) => {
+                let response = getComputedStyle(document.documentElement).getPropertyValue(propKey);
+
+                // Tidy up the string if there’s something to work with
+                if (response.length) {
+                    response = response.replace(/\'|"/g, '').trim();
+                }
+
+                // Return the string response by default
+                return response;
+            };
+
+            const applySetting = passedSetting => {
+                let currentSetting = passedSetting || localStorage.getItem(STORAGE_KEY);
+
+                if (currentSetting) {
+                    document.documentElement.setAttribute('data-user-color-scheme', currentSetting);
+                    setButtonLabelAndStatus(currentSetting);
+                } else {
+                    setButtonLabelAndStatus(getCSSCustomProp(COLOR_MODE_KEY));
+                }
+            }
+
+            const toggleSetting = () => {
+                let currentSetting = localStorage.getItem(STORAGE_KEY);
+
+                switch (currentSetting) {
+                    case null:
+                        currentSetting = getCSSCustomProp(COLOR_MODE_KEY) === 'dark' ? 'light' : 'dark';
+                        break;
+                    case 'light':
+                        currentSetting = 'dark';
+                        break;
+                    case 'dark':
+                        currentSetting = 'light';
+                        break;
+                }
+
+
+                localStorage.setItem(STORAGE_KEY, currentSetting);
+
+                return currentSetting;
+            }
+
+            const setButtonLabelAndStatus = currentSetting => {
+                modeToggleText.innerText = `Enable ${currentSetting === 'dark' ? 'light' : 'dark'} mode`;
+                modeStatusElement.innerText = `Color mode is now "${currentSetting}"`;
+            }
+
+            modeToggleButton.addEventListener('click', evt => {
+                evt.preventDefault();
+
+                applySetting(toggleSetting());
+            });
+
+            applySetting();
+        </script>
+        <div class="col-md-3 text-end">
+            {% if user.is_authenticated %}
+                <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a type="button" class="btn btn-outline-primary me-2" href="{% url 'login' %}">Login</a>
+                <a type="button" class="btn btn-primary" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </header>
+</div>
+<div class="container-fluid text-center main_background" id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<div class="footer">
+    <footer>
+        <h5 class="p-2">
+            Footer Content
+        </h5>
+    </footer>
+</div>
+</body>
+</html>

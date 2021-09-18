@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ dish_appearance.dish.name }}</h1>
+    <h2>
+        <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
+                alt="Star" class="star">
+        Dish Appearance: {{ dish_appearance.average_stars }}/10 <span
+            class="text-muted">{{ dish_appearance.review_count }} reviews</span>
+    </h2>
+    <h2>
+        <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
+                alt="Star" class="star">
+        {% with overall_dish=dish_appearance.overall_rating_count_average %}
+            Overall Dish: {{ overall_dish.average }}/10 <span
+                class="text-muted">{{ overall_dish.count }} reviews</span>
+        {% endwith %}
+    </h2>
+    {{ dish_appearance.reviews }}
+{% endblock %}
