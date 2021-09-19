@@ -16,6 +16,7 @@ callers = {
 }
 
 
+
 def send_message(message: str, to_phone_number: str):
     message = client.messages.create(
         messaging_service_sid=msg_service_sid,

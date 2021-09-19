@@ -49,16 +49,28 @@ class Leaderboard(ListView):
     template_name = 'leaderboard.html'
 
     def get_queryset(self):
-        sorted_profiles = sorted(Profile.objects.all(), key=lambda x: x.number_of_reviews, reverse=True)
+        sorted_profiles = sorted(Profile.objects.all(), key=lambda x: x.review_count, reverse=True)
         for index, profile in enumerate(sorted_profiles):
             profile.rank = index + 1
         return sorted_profiles
 
+class DishAppearanceLeaderboard(ListView):
+    model = DishAppearance
+    paginate_by = 5
+    context_object_name = 'dish_appearances'
+    template_name = 'dish_appearance_leaderboard.html'
 
-class ProfileDetail(DetailView):
-    model = Profile
-    context_object_name = 'profile'
-    template_name = 'profile_detail.html'
+    def get_queryset(self):
+        sorted_dishes = sorted(DishAppearance.objects.all(), key=lambda x: x.average_stars, reverse=True)
+        for index, dish in enumerate(sorted_dishes):
+            dish.rank = index + 1
+        return sorted_dishes
+
+
+class UserDetail(DetailView):
+    model = User
+    context_object_name = 'user_to_view'
+    template_name = 'user_detail.html'
 
 
 @login_required()
@@ -67,8 +79,10 @@ def review(request):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            if Review.objects.filter(user=request.user).count() > 0:
-                r = Review.objects.get(user=request.user)
+            if Review.objects.filter(user=request.user, dish_appearance=DishAppearance.objects.get(
+                    pk=request.GET.get('dish', ''))).count() > 0:
+                r = Review.objects.get(user=request.user, dish_appearance=DishAppearance.objects.get(
+                    pk=request.GET.get('dish', '')))
                 r.stars = form.cleaned_data.get('stars')
                 if len(form.cleaned_data.get('review_text')) > 0:
                     r.review_text = form.cleaned_data.get('review_text')

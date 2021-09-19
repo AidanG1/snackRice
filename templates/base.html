@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://snackrice.tech/"/>
@@ -24,20 +23,22 @@
             crossorigin="anonymous"></script>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
-    {#    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'image/favicon.ico' %}">#}
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'image/favicon.ico' %}">
 </head>
 <body>
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-            <img class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"
-                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.freebiesupply.com%2Flogos%2Flarge%2F2x%2Froadrunner-logo-png-transparent.png&f=1&nofb=1"
+        <a href="{% url 'servery_list' %}"
+           class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
+            <img class="bi me-2" width="60" height="60" role="img" aria-label="Bootstrap"
+                 src="/static/image/images/Icon.png"
                  alt="Logo">
-
+            <h3>Snack Rice</h3>
         </a>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li class="px-2 nav-link link-dark">{{ current_meal }}</li>
             <li><a href="{% url 'servery_list' %}" class="nav-link px-2 link-dark">Home</a></li>
+            <li><a href="{% url 'dish_appearance_leaderboard' %}" class="nav-link px-2 link-dark">Dish Leaderboard</a></li>
             <li><a href="{% url 'leaderboard' %}" class="nav-link px-2 link-dark">User Leaderboard</a></li>
         </ul>
         <div class="user-toggle">
@@ -131,8 +132,9 @@
 <div class="footer">
     <footer>
         <h5 class="p-2">
-            Created by Aidan Gerber, Ian Rundle, Carl Hernandez, and Phoebe Scaccia
+            Created by Aidan Gerber, Ian Rundle, Karl Hernandez, and Phoebe Scaccia
         </h5>
+        <img src="{% static 'image/images/Banner.png' %}" alt="Banner" style="width: 50vw; height: auto">
     </footer>
 </div>
 </body>
