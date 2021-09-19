@@ -38,10 +38,6 @@ class MealDetail(DetailView):
     context_object_name = 'meal'
     template_name = 'meal_detail.html'
 
-    # def get_queryset(self):
-    #     return super().get_queryset().filter(meal_start_time__gte=datetime.datetime.now().time(),
-    #                                          meal_end_time__lte=datetime.datetime.now().time())
-
 
 class Leaderboard(ListView):
     model = Profile

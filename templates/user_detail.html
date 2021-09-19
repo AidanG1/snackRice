@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
     <div class="rounded shadow-sm p-4">
         <h1>{{ user_to_view.username }}</h1>
         <h2><img
                 src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
-                alt="Star" class="star">{{ user_to_view.profile.average_stars }}/5 <span
+                alt="Star" class="star">{{ user_to_view.profile.average_stars|floatformat:2 }}/5 <span
                 class="text-muted">{{ user_to_view.profile.review_count }} reviews</span></h2>
         <h4 class="mb-1">All Ratings and Reviews From {{ user.username }}</h4>
         {% if user_to_view.profile.review_count == 0 %}

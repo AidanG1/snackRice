@@ -6,3 +6,4 @@ beautifulsoup4~=4.10.0
 twilio
 django-crispy-forms
 flask
+googlemaps
