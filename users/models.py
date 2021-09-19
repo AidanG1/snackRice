@@ -11,6 +11,21 @@ class Profile(models.Model):
     phone_number = PhoneNumberField(null=True, blank=True)
     walking_factor = models.IntegerField(default=5)
     food_factor = models.IntegerField(default=5)
+    preference_choices = (
+        ('prefer_tag', 'Prefer Tag'),
+        ('no_preference', 'No Preference'),
+        ('prefer_no_tag', 'Prefer No Tag'),
+    )
+    eggs = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    fish = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    gluten = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    milk = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    peanuts = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    shellfish = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    soy = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    tree_nuts = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    vegan = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
+    vegetarian = models.CharField(default='no_preference', max_length=15, choices=preference_choices)
 
     @property
     def reviews(self):

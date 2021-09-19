@@ -12,7 +12,13 @@ class RegisterForm(UserCreationForm):
         fields = ["username", "email", "password1", "password2"]
 
 
-class SettingsForm(UserCreationForm):
+class SettingsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SettingsForm, self).__init__(*args, **kwargs)
+        self.fields['walking_factor'].widget.attrs = {'min': 1, 'max': 10}
+        self.fields['food_factor'].widget.attrs = {'min': 1, 'max': 10}
+
     class Meta:
         model = Profile
-        fields = ["phone_number", 'walking_factor', 'food_factor']
+        fields = ["phone_number", 'walking_factor', 'food_factor', 'eggs', 'fish', 'gluten', 'milk', 'peanuts',
+                  'shellfish', 'soy', 'tree_nuts', 'vegan', 'vegetarian']
