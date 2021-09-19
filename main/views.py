@@ -54,6 +54,7 @@ class Leaderboard(ListView):
             profile.rank = index + 1
         return sorted_profiles
 
+
 class DishAppearanceLeaderboard(ListView):
     model = DishAppearance
     paginate_by = 5
