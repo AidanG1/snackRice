@@ -77,5 +77,15 @@ Finally, run the website on localhost. Visit localhost:8000 in your browser!
 ```bash
 $ python manage.py runserver
 ```
+To receive notification messages, create environment variables account_sid, auth_token, and msg_service_sid with your Twilio credentials and GOOGLE_KEY with your Google Maps API key.
+Then open up the flask server.
+```bash
+$ python notification.py
+```
+After that, use ngrok to open port 5050 to the internet. 
+```bash
+$ ngrok.exe http 5050
+```
+Copy the url from ngrok into the Twilio GUI and you are now set up to receive notifications!
 	
 ###  Created by Aidan Gerber, Ian Rundle, Karl Hernandez, and Phoebe Scaccia
