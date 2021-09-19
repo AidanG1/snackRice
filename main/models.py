@@ -75,7 +75,8 @@ class Servery(models.Model):
 class Dish(models.Model):
     uuid = ShortUUIDField(primary_key=True)
     name = models.CharField(max_length=100)
-    image = models.URLField(max_length=250, blank=True, null=True)
+    image = models.URLField(max_length=250, blank=True, null=True,
+                            help_text='Enter a link to an image hosted on the internet')
     eggs = models.BooleanField(default=False)
     fish = models.BooleanField(default=False)
     gluten = models.BooleanField(default=False)
