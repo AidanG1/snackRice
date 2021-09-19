@@ -12,34 +12,118 @@
           content="snackrice.tech is the Hack Rice 11 entry from Aidan Gerber, Ian Rundle, Karl Hernandez, and Phoebe Scaccia."/>
     <style>
         html {
-            background: url(layered-waves-haikei.svg) no-repeat center center fixed;
+            background: #fff;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
+            height: 550px;
+            width: 100%;
         }
+        @font-face {
+            font-family: 'Hobo Std';
+            src: url("https://github.com/AidanG1/snackRice/blob/6b3dbdae63ee387a98c40c930a2b3018c792d26f/templates/staticSite/HoboStd.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: 'MAIAN';
+            src: url("https://github.com/AidanG1/snackRice/blob/9f768c012ef99c800b6fcaee671d2446aa78fd3f/templates/staticSite/MAIAN.TTF") format("truetype");
+        }
+
+        .header {
+            background: linear-gradient(to bottom right, rgba(248, 173, 158), rgba(255, 243, 191));
+            padding: 72px;
+            text-align: left;
+            margin: -10px;
+        }
+
+        .logo {
+            height: auto;
+        }
+
+        @media (min-width: 600px){
+            .logo {
+                position: absolute;
+                right: 5vw;
+                top: -2vw;
+                max-width: 30vw;
+        }
+        
+        h3 {
+            color: rgba(102, 0, 0);
+            font-size: 400%;
+            padding-left: 72px;
+            margin: 0px;
+            font-family: 'MAIAN';
+            overflow: hidden;
+        }
+        h4 {
+            color: rgba(74, 3, 0);
+            font-size: 600%;
+            padding-left: 72px;
+            margin: 0px;
+            overflow: hidden;
+            font-family: 'Hobo Std';
+        }
+        h5 {
+            color: rgba(102, 0, 0);
+            font-size: 300%;
+            padding-left: 72px;
+            margin: 0px;
+            overflow: hidden;
+            font-family: "MAIAN";
+        }
+        
+        }
+
+        @media (max-width: 599px) {
+        .logo {
+            max-width: 100%;
+        }
+        
+        h3 {
+            color: rgba(102, 0, 0);
+            font-size: 10vw;
+            margin: 0px;
+            font-family: 'Maiandra';
+            overflow: hidden;
+            text-align: center;
+        }
+        h4 {
+            color: rgba(74, 3, 0);
+            font-size: 15vw;
+            margin: 0px;
+            overflow: hidden;
+            font-family: 'Hobo Std';
+            text-align: center;
+        }
+        h5 {
+            color: rgba(102, 0, 0);
+            font-size: 4vw;
+            margin: 0px;
+            overflow: hidden;
+            text-align: center;
+        }
+        }
+
 
         h1 {
             color: whitesmoke;
         }
-
         h2 {
             color: whitesmoke;
         }
-
         div {
             justify-content: center;
             text-align: center;
             margin: auto;
         }
-
         .container {
             position: relative;
             overflow: hidden;
             width: 100%;
             padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
         }
-
         .responsive-iframe {
             position: absolute;
             top: 0;
@@ -48,6 +132,17 @@
             right: 0;
             width: 100%;
             height: 100%;
+        }
+        .gallery {
+            display: grid;
+            grid-column-gap: 0px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        .box {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
     </style>
     <link rel="icon" type="image/svg" sizes="32x32" href="Icon.svg">
