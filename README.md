@@ -17,6 +17,7 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 		- Reviews of dishes
 		- Notification timing
 	- Review every dish with star rating and review text
+	- View weekly future meals
 	- Option for crowdsourcing data and images if Rice website is incorrect
 	- Infinite scroll leaderboard of users with the most reviews
 	- Infinite scroll leaderboard of dishes with the best reviews
