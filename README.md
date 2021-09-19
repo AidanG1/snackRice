@@ -37,15 +37,15 @@ $ git clone git@github.com/AidanG1/snackRice.git
 $ cd snackRice
 ```
 Then set up your virtual environment and install the requirements.
-```
+```bash
 $ pip install -r requirements.txt
 ```
 Next apply database migrations
-```
+```bash
 $ python manage.py migrate
 ```
 Finally, run the website on localhost. Visit localhost:8000 in your browser!
-```
+```bash
 $ python manage.py runserver
 ```
 	
