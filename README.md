@@ -1,4 +1,4 @@
-# <a href="https://snackrice.tech/" target="_blank">Snack Rice</a>
+# <a href="https://snackrice.tech/" target="_blank">🍚Snack Rice</a>
 # Table of Contents
 1. [About](#quick-info)
 2. [Feature List](#feature)
