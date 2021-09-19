@@ -17,9 +17,7 @@ servery_indices = {0: "South", 1: "North", 2: "Seibel", 3: "West", 4: "Baker"}
 test_servery_scores = [0.90, 0.20, 0.23, 0.21, 0.27]  # 1.0 is the best food ever, 0.0 is dogshit
 walking_factor = 0.1  # 1.0 is "id rather die than walk", 0.0 is "im a sigma male athlete"
 
-# os.environ['GOOGLE_KEY'] = "AIzaSyDQpO-oIw1ZGbDrbjMm0sRNJ7p3bpWundM"
 key = os.environ['GOOGLE_PATH']
-print(key)
 
 
 def generate_url(fields, apitype, key):
@@ -55,6 +53,7 @@ def servery_distances(place_id):
                        "distancematrix", key)
     response = requests.request("GET", url, headers={}, data={}).json()
     times = []
+    print(response["rows"][0]["elements"])
     for stat in response["rows"][0]["elements"]:
         times.append(stat["duration"]["value"])
 
