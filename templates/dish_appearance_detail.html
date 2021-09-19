@@ -4,8 +4,7 @@
 {% block content %}
     <h1>{{ dish_appearance.dish.name }}</h1>
     <h2>Served at <a
-            href="{% url 'servery_detail' dish_appearance.meal.servery.slug %}">{{ dish_appearance.meal.servery.name }}</a>
-        on {{ dish_appearance.meal.meal_date }}</h2>
+            href="{% url 'meal_detail' dish_appearance.meal_id %}">{{ dish_appearance.meal }}</a></h2>
     <h3>
         Specific Serving:
         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
@@ -24,11 +23,11 @@
             <h5>No reviews yet</h5>
         {% else %}
             {% for review in dish_appearance.reviews %}
-                <div class="reviews-members pt-3 pb-2">
+                <div class="reviews-members pt-1 pb-1">
                     <div class="media">
                         <div class="media-body">
                             <div class="reviews-members-header">
-                                <h4 class="mb-1"><a
+                                <h4><a
                                         href="{% url 'user_detail' review.user.pk review.user.username %}">{{ review.user.username }}</a>
                                 </h4>
                                 <h6>{{ review.stars }} Stars</h6>

@@ -105,7 +105,7 @@ class Meal(models.Model):
     meal_end_time = models.TimeField()
 
     def __str__(self):
-        return f'{self.servery.name} {self.meal_type} on {self.meal_date}'
+        return f'{self.servery.name} {self.meal_type} on {self.meal_date.strftime("%b %d, %Y")}'
 
 
 class DishAppearance(models.Model):

@@ -49,7 +49,7 @@ class Leaderboard(ListView):
     template_name = 'leaderboard.html'
 
     def get_queryset(self):
-        sorted_profiles = sorted(Profile.objects.all(), key=lambda x: x.number_of_reviews, reverse=True)
+        sorted_profiles = sorted(Profile.objects.all(), key=lambda x: x.review_count, reverse=True)
         for index, profile in enumerate(sorted_profiles):
             profile.rank = index + 1
         return sorted_profiles
@@ -57,7 +57,7 @@ class Leaderboard(ListView):
 
 class UserDetail(DetailView):
     model = User
-    context_object_name = 'user'
+    context_object_name = 'user_to_view'
     template_name = 'user_detail.html'
 
 

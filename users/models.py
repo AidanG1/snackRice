@@ -17,7 +17,7 @@ class Profile(models.Model):
         return Review.objects.filter(user=self.user)
 
     @property
-    def number_of_reviews(self):
+    def review_count(self):
         return self.reviews.count()
 
     @property

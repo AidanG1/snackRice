@@ -32,20 +32,41 @@
             text-align: center;
             margin: auto;
         }
+
+        .container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+        }
+
+        .responsive-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
     <link rel="icon" type="image/svg" sizes="32x32" href="Icon.svg">
 </head>
 <body>
 <div>
-    <img alt="banner" src="Banner.svg" style="width: 95vw; height: auto">
+    <img alt="banner"
+         src="https://raw.githubusercontent.com/AidanG1/snackRice/master/main/static/image/images/Banner.svg"
+         style="width: 95vw; height: auto">
     <h1>Snack Rice is a Hack Rice 11 Project</h1>
     <h2>Created by Aidan Gerber, Ian Rundle, Karl Hernandez, and Phoebe Scaccia</h2>
     <h2><a href="https://github.com/AidanG1/snackRice" target="_blank">View the code on Github</a></h2>
-    <iframe width="640" height="340" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope"
-            allowfullscreen></iframe>
+    <div class="container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" class="responsive-iframe"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope"
+                allowfullscreen></iframe>
+    </div>
 </div>
 </body>
 </html>

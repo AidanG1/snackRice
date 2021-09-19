@@ -2,23 +2,26 @@
 
 {% block content %}
     <div class="rounded shadow-sm p-4">
-        <h1>{{ user.username }}</h1>
+        <h1>{{ user_to_view.username }}</h1>
         <h2><img
                 src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
-                alt="Star" class="star">{{ user.profile.average_stars }}/5 <span
-                class="text-muted">{{ user.profile.number_of_reviews }} reviews</span></h2>
+                alt="Star" class="star">{{ user_to_view.profile.average_stars }}/5 <span
+                class="text-muted">{{ user_to_view.profile.review_count }} reviews</span></h2>
         <h4 class="mb-1">All Ratings and Reviews From {{ user.username }}</h4>
-        {% if dish_appearance.review_count == 0 %}
+        {% if user_to_view.profile.review_count == 0 %}
             <h5>No reviews yet</h5>
         {% else %}
-            {% for review in dish_appearance.reviews %}
+            {% for review in user_to_view.profile.reviews %}
                 <div class="reviews-members pt-3 pb-2">
                     <div class="media">
                         <div class="media-body">
                             <div class="reviews-members-header">
-                                <h4 class="mb-1"><a
-                                        href="{% url 'user_detail' review.user.pk review.user.username %}">{{ review.user.username }}</a>
+                                <h4>
+                                    <a href="{% url 'dish_appearance_detail' review.dish_appearance.uuid %}">{{ review.dish_appearance.dish.name }}</a> during <a href="{% url 'meal_detail' review.dish_appearance.meal_id %}">{{ review.dish_appearance.meal }}</a>
                                 </h4>
+                                <h6><a
+                                        href="{% url 'user_detail' review.user.pk review.user.username %}">{{ review.user.username }}</a>
+                                </h6>
                                 <h6>{{ review.stars }} Stars</h6>
                                 <p class="text-gray">{{ review.review_datetime }}</p>
                             </div>

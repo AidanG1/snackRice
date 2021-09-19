@@ -13,7 +13,7 @@
                             <h3 class="card-title">{{ profile.rank|ordinal }}:
                                 <a href="{% url 'user_detail' profile.user.pk profile.user.username %}">{{ profile.user|slice:":30" }}</a>
                             </h3>
-                            <p class="card-text">Number of Reviews: {{ profile.number_of_reviews }}
+                            <p class="card-text">Number of Reviews: {{ profile.review_count }}
                             <p class="card-text">Average Stars: {{ profile.average_stars|floatformat:2 }}</p>
                         </div>
                     </div>

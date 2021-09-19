@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ meal.meal_type }}</h1>
+    <h1>{{ meal }}</h1>
     <h2>Opens At {{ meal.meal_start_time }}, Closes At {{ meal.meal_end_time }}</h2>
     <div class="card-group content-row container-fluid">
         {% if meal.servery.current_dishes.count == 0 %}
