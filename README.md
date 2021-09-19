@@ -7,7 +7,7 @@
 3. [Techstack](#tech)
 3. [Hosting](#host)
 ## ⚡Quick Info:<a name="quick-info"></a>
-Built in under 36 hours, Snack Rice is your go-to place for Rice University's serveries (cafeterias for non-Ricers). Snack Rice combines a Yelp-like website for rating food with a notification system for getting custom recommendations based on distance, quality, and dietary restrictions. With the possibility to review all servery food, filter food based on dietary restrictions, and set up custom SMS messages to alert you of your favorite foods, Snack Rice will soon become your favorite site.
+Built in under 36 hours, Snack Rice is your go-to place for Rice University's serveries (cafeterias for non-Ricers). Snack Rice combines a Yelp-like website for rating food with a notification system for getting custom recommendations based on distance, quality, and dietary restrictions. With the possibility to review all servery food, filter food based on dietary restrictions, and set up custom SMS messages to alert you of your favorite foods, Snack Rice help you to get the most out of your meal plan.
 
 ## 📚Feature List:<a name="feature"></a>
 	- Automated tasks to scrape meal information from dining.rice.edu
@@ -52,6 +52,7 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 	- Django templates (html/css/js/python)
 	- SQLite
 	- Flask (python)
+	- ngrok (Flask on the internet)
 	- Twilio (sms)
 	- Google Cloud (Google Maps API)
 	- Domain.com (domain registration and management)
