@@ -1,4 +1,4 @@
-# <a href="https://snackrice.tech/" target="_blank">Snack Rice</a>
+# <a href="https://snackrice.tech/" target="_blank">🍚Snack Rice</a>
 # Table of Contents
 1. [About](#quick-info)
 2. [Feature List](#feature)
@@ -17,6 +17,7 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 		- Reviews of dishes
 		- Notification timing
 	- Review every dish with star rating and review text
+	- View weekly future meals
 	- Option for crowdsourcing data and images if Rice website is incorrect
 	- Infinite scroll leaderboard of users with the most reviews
 	- Infinite scroll leaderboard of dishes with the best reviews
@@ -43,16 +44,18 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 	- Add food poisoning alert
 	- Adding information for calories for each meal
 	- Suggests what food you should try out in your next adventure - machine learning 😉
+	- Reviews with markdown and likes
 	- See where your friends/followers are eating
 		
 ## 🤖Techstack:<a name="tech"></a>
 	- Django (python)
 	- Django templates (html/css/js/python)
 	- SQLite
-	- Flask
+	- Flask (python)
 	- Twilio (sms)
 	- Google Cloud (Google Maps API)
-	- Domain.com
+	- Domain.com (domain registration and management)
+	- Cloudflare (security and performance)
 
 ## 🖥️Instructions on how to host locally<a name="host"></a>
 
