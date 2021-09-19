@@ -19,11 +19,11 @@
                         {% else %}
                             <h5 class="card-text">Not open for {{ current_meal }}</h5>
                         {% endif %}
-                        {% for dish_appearance in servery.current_dishes %}
-                            <p class="card-text"><a
-                                    href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{{ dish_appearance.dish.name }}</a>
+                        {% if servery.highest_rated_current_item %}
+                            <p class="card-text">Highest Rated Current Item: <a
+                                    href="{% url 'dish_appearance_detail' servery.highest_rated_current_item.uuid %}">{{ servery.highest_rated_current_item.dish.name }}</a>
                             </p>
-                        {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>

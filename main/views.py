@@ -63,7 +63,7 @@ class DishAppearanceLeaderboard(ListView):
     template_name = 'dish_appearance_leaderboard.html'
 
     def get_queryset(self):
-        sorted_dishes = sorted(DishAppearance.objects.all(), key=lambda x: x.average_stars, reverse=True)
+        sorted_dishes = sorted(DishAppearance.objects.all(), key=lambda x: (x.average_stars), reverse=True)
         for index, dish in enumerate(sorted_dishes):
             dish.rank = index + 1
         return sorted_dishes

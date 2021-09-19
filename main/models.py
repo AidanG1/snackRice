@@ -72,6 +72,14 @@ class Servery(models.Model):
     def current_dishes(self):
         return DishAppearance.objects.filter(meal=self.current_meal)
 
+    @property
+    def highest_rated_current_item(self):
+        srtd = sorted(self.current_dishes, key=lambda x: x.average_stars, reverse=True)
+        if len(srtd) > 0:
+            return srtd[0]
+        else:
+            return None
+
 
 class Dish(models.Model):
     uuid = ShortUUIDField(primary_key=True)
@@ -152,6 +160,14 @@ class DishAppearance(models.Model):
         else:
             return_dict['average'] = sum(stars_list) / len(stars_list)
         return return_dict
+
+    @property
+    def overall_stars(self):
+        return self.overall_rating_count_average['average']
+
+    @property
+    def overall_review_count(self):
+        return len(self.overall_star_list)
 
 
 class Review(models.Model):

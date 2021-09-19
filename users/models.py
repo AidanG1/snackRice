@@ -2,13 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from phonenumber_field.modelfields import PhoneNumberField
 from main.models import Review
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = PhoneNumberField(null=True, blank=True)
+    phone_number = models.IntegerField(null=True, blank=True)
     default_location = models.CharField(default='Baker College', max_length=50)
     walking_factor = models.IntegerField(default=5)
     food_factor = models.IntegerField(default=5)

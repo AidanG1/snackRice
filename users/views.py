@@ -22,6 +22,7 @@ def register(response):
 @login_required()
 def settings(request):
     rup = request.user.profile
+    print(rup.phone_number)
     if request.method == "POST":
         form = SettingsForm(request.POST,
                             initial={

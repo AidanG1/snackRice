@@ -165,7 +165,7 @@ class Command(BaseCommand):
                 Review.objects.get_or_create(
                     dish_appearance=dish_appearance,
                     user=user,
-                    stars=random.randrange(1, 11),
+                    stars=random.randrange(1, 6),
                     review_text=' '.join(random.sample(latin_words, 15))
                 )
                 print(f'Dish: {dish_appearance.dish.name}, user: {user}')

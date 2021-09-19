@@ -31,12 +31,12 @@
     <h3>
         Specific Serving:
         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
-             alt="Star" class="star">{{ dish_appearance.average_stars }}/5 <span
+             alt="Star" class="star">{{ dish_appearance.average_stars|floatformat:2 }}/5 <span
             class="text-muted">{{ dish_appearance.review_count }} reviews</span>
         {% with overall_dish=dish_appearance.overall_rating_count_average %}
             All Times Served:
             <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
-                 alt="Star" class="star">{{ overall_dish.average }}/5 <span
+                 alt="Star" class="star">{{ overall_dish.average|floatformat:2 }}/5 <span
                 class="text-muted">{{ overall_dish.count }} reviews</span>
         {% endwith %}
     </h3>
