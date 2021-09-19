@@ -4,17 +4,21 @@
 {% block content %}
     <body>
     <div class="container">
-        <h1>Leaderboard</h1>
+        <h1>Dish Leaderboard</h1>
         <div class="profile-list">
-            {% for profile in profiles %}
+            {% for dish in dish_appearances %}
                 <div class="card mb-3">
                     <div class="card-body">
                         <div style="display: inline-block; float: left" class="mr-3">
-                            <h3 class="card-title">{{ profile.rank|ordinal }}:
-                                <a href="{% url 'user_detail' profile.user.pk profile.user.username %}">{{ profile.user|slice:":30" }}</a>
+                            <h3 class="card-title">{{ dish.rank|ordinal }}:
+                                <a href="{% url 'dish_appearance_detail' dish.pk %}">{{ dish.dish.name }}</a>
                             </h3>
-                            <p class="card-text">Number of Reviews: {{ profile.review_count }}
-                            <p class="card-text">Average Stars: {{ profile.average_stars|floatformat:2 }}</p>
+                            <p class="card-text">Average Stars: {{ dish.average_stars }} / 5</p>
+                            <p class="card-text">Number of Reviews: {{ dish.review_count }}
+                                {% with overall_dish=dish.overall_rating_count_average %}
+                                <p class="card-text">Average Overall Stars: {{ overall_dish.average }} / 5
+                                <p class="card-text">Number of Overall Reviews: {{ overall_dish.count }}
+                            {% endwith %}
                         </div>
                     </div>
                 </div>

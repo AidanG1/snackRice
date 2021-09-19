@@ -26,6 +26,7 @@ def settings(request):
         form = SettingsForm(request.POST,
                             initial={
                                 'phone_number': rup.phone_number,
+                                'default_location': rup.default_location,
                                 'walking_factor': rup.walking_factor,
                                 'food_factor': rup.food_factor,
                                 'receive_notification_time': rup.receive_notification_time,
@@ -43,6 +44,7 @@ def settings(request):
         if form.is_valid():
             p = request.user.profile
             p.phone_number = form.cleaned_data.get('phone_number')
+            p.default_location = form.cleaned_data.get('default_location')
             p.walking_factor = form.cleaned_data.get('walking_factor')
             p.food_factor = form.cleaned_data.get('food_factor')
             p.receive_notification_time = form.cleaned_data.get('receive_notification_time')
@@ -61,6 +63,7 @@ def settings(request):
     else:
         form = SettingsForm(initial={
             'phone_number': rup.phone_number,
+            'default_location': rup.default_location,
             'walking_factor': rup.walking_factor,
             'food_factor': rup.food_factor,
             'receive_notification_time': rup.receive_notification_time,
