@@ -9,8 +9,9 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 		
 ## Techstack:
 	- Django (python)
+	- Django templates (html/css/js/python)
 	- SQLite
-	- NodeJS (javascript/html/css)
+	- NodeJS (html/css/js)
 	- Twilio (sms)
 	- Google Cloud (Google Maps API)
 	- Domain.com
