@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Weekly Meals</h1>
+    <div class="card-group row container-fluid">
+        {% for meal in meals %}
+            <div class="mb-1" style="display:inline-block; width: 31%">
+                <div class="card h-100">
+                    <h3 class="card-title"><a href="{% url 'meal_detail' meal.uuid %}">{{ meal }}</a></h3>
+                    {% if servery.image is not None %}
+                        <a href="{% url 'servery_detail' servery.slug %}"><img src="{{ servery.image }}"
+                                                                               class="card-img-top"
+                                                                               alt="{{ servery.name }}"></a>
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="card-text">Opens At {{ meal.meal_start_time }}, Closes At {{ meal.meal_end_time }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

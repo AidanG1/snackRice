@@ -61,11 +61,12 @@ class Servery(models.Model):
 
     @property
     def current_meal(self):
-        meals = Meal.objects.filter(servery=self, meal_date=datetime.date.today())
-        for meal in meals.order_by('-meal_end_time'):
-            if datetime.datetime.now().time() <= meal.meal_end_time:
-                return meal
-        return meals.last()
+        if self.open_now:
+            meals = Meal.objects.filter(servery=self, meal_date=datetime.date.today())
+            for meal in meals.order_by('meal_end_time'):
+                if datetime.datetime.now().time() <= meal.meal_end_time:
+                    return meal
+            return meals.last()
 
     @property
     def current_dishes(self):
@@ -123,11 +124,11 @@ class DishAppearance(models.Model):
 
     @property
     def average_stars(self):
-        avg = self.reviews.aggregate(Avg('stars'))['stars__avg']
-        if isinstance(avg, type(None)):
+        stars_list = self.reviews.values_list('stars', flat=True)
+        if len(stars_list) == 0:
             return 0
         else:
-            return avg
+            return sum(stars_list) / len(stars_list)
 
     @property
     def review_count(self):

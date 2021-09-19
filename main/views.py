@@ -69,6 +69,12 @@ class DishAppearanceLeaderboard(ListView):
         return sorted_dishes
 
 
+class WeeklyMenu(ListView):
+    model = Meal
+    context_object_name = 'meals'
+    template_name = 'weekly_menu.html'
+
+
 class UserDetail(DetailView):
     model = User
     context_object_name = 'user_to_view'

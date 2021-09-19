@@ -9,7 +9,7 @@
             {% for profile in profiles %}
                 <div class="card mb-3">
                     <div class="card-body">
-                        <div style="display: inline-block; float: left" class="mr-3">
+                        <div class="mr-3">
                             <h3 class="card-title">{{ profile.rank|ordinal }}:
                                 <a href="{% url 'user_detail' profile.user.pk profile.user.username %}">{{ profile.user|slice:":30" }}</a>
                             </h3>

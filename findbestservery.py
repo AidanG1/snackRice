@@ -19,7 +19,8 @@ west_servery_id = "ChIJf8hcvX7AQIYRH9dtCL4HGXw"
 baker_servery_id = "ChIJuXPL03vAQIYRF9i4a0IUVAE"
 seibel_servery_id = "ChIJGTEMkHnAQIYREr6DQPZulXM"
 
-google_key = os.environ['GOOGLE_PATH']
+# google_key = os.environ['GOOGLE_PATH']
+google_key = 'AIzaSyBI58ny7OqVTmEKzqumFPHKlU9B4sgXkvw'
 
 
 def generate_url(fields, apitype, key):
@@ -31,9 +32,10 @@ def generate_url(fields, apitype, key):
     url += ("key=" + key)
     return url
 
+
 def maps_recommendations(input):
     url = generate_url({"input": input, "strictbounds": "true", "location": str(riceu_lat) + "," + str(riceu_long),
-                        "radius": str(riceu_radius)}, "place/autocomplete", key)
+                        "radius": str(riceu_radius)}, "place/autocomplete", google_key)
     response = requests.request("GET", url, headers={}, data={})
     response = response.json()
     recommendations = []
@@ -42,22 +44,24 @@ def maps_recommendations(input):
             {"name": location["structured_formatting"]["main_text"], "place_id": location["place_id"]})
     return recommendations
 
+
 def servery_distances(place_id):
     destinations = ""
     for servery_id in [south_servery_id, north_servery_id, seibel_servery_id, west_servery_id]:
         destinations += "place_id:" + servery_id + "|"
     destinations += "place_id:" + baker_servery_id
     url = generate_url({"destinations": destinations, "origins": "place_id:" + place_id, "mode": "WALKING"},
-                       "distancematrix", key)
+                       "distancematrix", google_key)
     response = requests.request("GET", url, headers={}, data={}).json()
     times = {
-        "South":response["rows"][0]["elements"][0]["duration"]["value"],
-        "North":response["rows"][0]["elements"][1]["duration"]["value"],
-        "Seibel":response["rows"][0]["elements"][2]["duration"]["value"],
-        "West":response["rows"][0]["elements"][3]["duration"]["value"],
-        "Baker":response["rows"][0]["elements"][4]["duration"]["value"]
+        "South Servery": response["rows"][0]["elements"][0]["duration"]["value"],
+        "North Servery": response["rows"][0]["elements"][1]["duration"]["value"],
+        "Seibel Servery": response["rows"][0]["elements"][2]["duration"]["value"],
+        "West Servery": response["rows"][0]["elements"][3]["duration"]["value"],
+        "Baker Servery": response["rows"][0]["elements"][4]["duration"]["value"]
     }
     return times
+
 
 def optimized_servery_points(servery_dists, servery_scores, walking_factor):
     final_scores = {}
@@ -67,24 +71,26 @@ def optimized_servery_points(servery_dists, servery_scores, walking_factor):
         if dist > max_dist:
             max_dist = dist
             max_servery = servery
-    for key, value in servery_dists:
-        final_scores[key] = servery_scores[key] * (1 - walking_factor) + servery_dists[key] / max_dist * walking_factor
+    for key, value in servery_dists.items():
+        final_scores[key] = servery_scores[key] * (1 - walking_factor/10) - servery_dists[key] / max_dist * walking_factor
+    return final_scores
+
 
 def main():
     current_meals = [servery.current_meal for servery in Servery.objects.all()]
     user_profile = User.objects.get(username='Superuser').profile
     user_preferences = {
-                           'eggs': user_profile.eggs,
-                           'fish': user_profile.fish,
-                           'gluten': user_profile.gluten,
-                           'milk': user_profile.milk,
-                           'peanuts': user_profile.peanuts,
-                           'shellfish': user_profile.shellfish,
-                           'soy': user_profile.soy,
-                           'tree_nuts': user_profile.tree_nuts,
-                           'vegan': user_profile.vegan,
-                           'vegetarian': user_profile.vegetarian
-                       }
+        'eggs': user_profile.eggs,
+        'fish': user_profile.fish,
+        'gluten': user_profile.gluten,
+        'milk': user_profile.milk,
+        'peanuts': user_profile.peanuts,
+        'shellfish': user_profile.shellfish,
+        'soy': user_profile.soy,
+        'tree_nuts': user_profile.tree_nuts,
+        'vegan': user_profile.vegan,
+        'vegetarian': user_profile.vegetarian
+    }
     for key, value in user_preferences.copy().items():
         if value == 'no_preference':
             user_preferences.pop(key)
@@ -129,9 +135,10 @@ def main():
     print(meal_ratings)
     for servery, meal_rating in meal_ratings.items():
         meal_ratings[servery] = meal_rating / 10.0
-    servery_dists = servery_distances(maps_recommendations[0]["place_id"])
+    servery_dists = servery_distances(maps_recommendations(user_profile.default_location)[0]["place_id"])
     servery_scores = optimized_servery_points(servery_dists, meal_ratings, user_profile.walking_factor)
     print(servery_scores)
+
 
 if __name__ == '__main__':
     main()

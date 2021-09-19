@@ -10,5 +10,6 @@ urlpatterns = [
     path('m/<str:pk>', views.MealDetail.as_view(), name='meal_detail'),
     path('review/', views.review, name='review'),
     path('edit_dish/', views.edit_dish, name='edit_dish'),
+    path('weekly_menu/', views.WeeklyMenu.as_view(), name='weekly_menu'),
     path('u/<int:pk>/<str:username>', views.UserDetail.as_view(), name='user_detail')
 ]
