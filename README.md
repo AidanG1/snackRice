@@ -49,10 +49,11 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 	- Django (python)
 	- Django templates (html/css/js/python)
 	- SQLite
-	- Flask
+	- Flask (python)
 	- Twilio (sms)
 	- Google Cloud (Google Maps API)
-	- Domain.com
+	- Domain.com (domain registration and management)
+	- Cloudflare (security and performance)
 
 ## 🖥️Instructions on how to host locally<a name="host"></a>
 
