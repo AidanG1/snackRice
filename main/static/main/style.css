@@ -83,6 +83,9 @@ a {
 
 .card {
     background-color: var(--card-background);
+    justify-content: center;
+    margin: auto;
+    text-align: center;
 }
 
 h1 {

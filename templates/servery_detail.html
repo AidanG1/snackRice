@@ -2,12 +2,12 @@
 
 {% block content %}
     <h1>{{ servery.name }}</h1>
-    <div class="card-group content-row container-fluid m-2">
+    <div class="card-group content-row container-fluid">
         {% if servery.current_dishes.count == 0 %}
             <h2>No current dishes</h2>
         {% else %}
             {% for dish_appearance in servery.current_dishes %}
-                <div class="card">
+                <div class="card m-2 col" style="width: 30%; display: inline-block">
                     {% if dish_appearance.dish.image is not None %}
                         <img src="{{ dish_appearance.dish.image }}" class="card-img-top"
                              alt="{{ dish_appearance.dish.name }}">

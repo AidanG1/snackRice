@@ -9,6 +9,7 @@ from main.models import Review
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = PhoneNumberField(null=True, blank=True)
+    default_location = models.CharField(default='Baker College', max_length=50)
     walking_factor = models.IntegerField(default=5)
     food_factor = models.IntegerField(default=5)
     receive_notification_time = models.IntegerField(default=30,

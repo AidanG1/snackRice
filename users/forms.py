@@ -20,5 +20,5 @@ class SettingsForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ["phone_number", 'walking_factor', 'food_factor', 'receive_notification_time','eggs', 'fish', 'gluten', 'milk', 'peanuts',
+        fields = ["phone_number", 'default_location', 'walking_factor', 'food_factor', 'receive_notification_time','eggs', 'fish', 'gluten', 'milk', 'peanuts',
                   'shellfish', 'soy', 'tree_nuts', 'vegan', 'vegetarian']

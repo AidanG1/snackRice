@@ -1,7 +1,15 @@
-# snackrice.tech
-Built in under 36 hours, Snack Rice is your go-to place for Rice University's serveries. Snack Rice illustrates the weekly menu for all serveries in a concise and easy manner. With the possibility to review all servery food, filter food based on dietary restrictions, and set up custom SMS messages to alert you of your favorite foods, Snack Rice will soon become your favorite site.
+# <a href="https://snackrice.tech/" target="_blank">Snack Rice</a>
+# Table of Contents
+1. [About](#quick-info)
+2. [Feature List](#feature)
+3. [15 Simple Steps](#15)
+3. [Future Todos](#future)
+3. [Techstack](#tech)
+3. [Hosting](#host)
+## ⚡Quick Info:<a name="quick-info"></a>
+Built in under 36 hours, Snack Rice is your go-to place for Rice University's serveries (cafeterias for non-Ricers). Snack Rice combines a Yelp-like website for rating food with a notification system for getting custom recommendations based on distance, quality, and dietary restrictions. With the possibility to review all servery food, filter food based on dietary restrictions, and set up custom SMS messages to alert you of your favorite foods, Snack Rice will soon become your favorite site.
 
-## Feature List:
+## 📚Feature List:<a name="feature"></a>
 	- Automated tasks to scrape meal information from dining.rice.edu
 	- Customized meal text notifications using the Twilio API and a Node.js server
 		- Dietary restrictions (vegan, vegetarian, gluten free, and more)
@@ -14,7 +22,7 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 	- Infinite scroll leaderboard of dishes with the best reviews
 	- Persistent light/dark themes based off user choice and browser settings
 	
-## 15 Simple Steps to Communicate Between Text, Django, Flask, and Google Maps
+## 👣15 Simple Steps to Communicate Between Text, Django, Flask, and Google Maps:<a name="15"></a>
 	1. User sets up account with Snack Rice
 	2. User puts in phone number, preferences about walking and food quality, dietary restrictions, and notification timing
 	3. Django timed task calls notification loop
@@ -31,22 +39,22 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 	14. Django determines the best choice based on distances, reviews, and restrictions
 	15. Django sends text with Twilio to user
 	
-## Future Todos:
+## 🔮Future Todos:<a name="future"></a>
 	- Add food poisoning alert
 	- Adding information for calories for each meal
 	- Suggests what food you should try out in your next adventure - machine learning 😉
 	- See where your friends/followers are eating
 		
-## Techstack:
+## 🤖Techstack:<a name="tech"></a>
 	- Django (python)
 	- Django templates (html/css/js/python)
 	- SQLite
-	- NodeJS (html/css/js)
+	- Flask
 	- Twilio (sms)
 	- Google Cloud (Google Maps API)
 	- Domain.com
 
-## Instructions on how to host locally
+## 🖥️Instructions on how to host locally<a name="host"></a>
 
 First, clone the repository.
 ```bash
