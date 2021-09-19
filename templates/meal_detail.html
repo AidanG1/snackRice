@@ -11,12 +11,16 @@
                 <div class="card m-2">
                     {% if dish_appearance.dish.image is not None %}
                         <img src="{{ dish_appearance.dish.image }}" class="card-img-top"
-                             alt="{{ dish_appearance.dish.name }}">
+                             alt="{{ dish_appearance.dish.name }}" style="margin: auto">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title"><a
+                        <h5 class="card-title" style="display: inline-block"><a
                                 href="{% url 'dish_appearance_detail' dish_appearance.uuid %}">{{ dish_appearance.dish.name }}</a>
                         </h5>
+                        <p class="card-text" style="display: inline-block;"><img
+                                src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
+                                alt="Star" class="star">{{ dish_appearance.average_stars }}/5 <span
+                                class="text-muted">{{ dish_appearance.review_count }} reviews</span></p>
                     </div>
                 </div>
             {% endfor %}

@@ -30,16 +30,17 @@
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <a href="{% url 'servery_list' %}"
            class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
-            <img class="bi me-2" width="60" height="60" role="img" aria-label="Bootstrap"
+            <img class="bi" width="60" height="60" role="img" aria-label="Bootstrap"
                  src="/static/image/images/Icon.png"
                  alt="Logo">
             <h3>Snack Rice</h3>
         </a>
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <ul class="nav col-md-auto mb-2 mb-md-0">
             <li class="px-2 nav-link link-dark">{{ current_meal }}</li>
             <li><a href="{% url 'servery_list' %}" class="nav-link px-2 link-dark">Home</a></li>
             <li><a href="{% url 'dish_appearance_leaderboard' %}" class="nav-link px-2 link-dark">Dish Leaderboard</a></li>
             <li><a href="{% url 'leaderboard' %}" class="nav-link px-2 link-dark">User Leaderboard</a></li>
+            <li><a href="{% url 'weekly_menu' %}" class="nav-link px-2 link-dark">Weekly Meals</a></li>
         </ul>
         <div class="user-toggle">
             <div role="status" class="[ visually-hidden ][ js-mode-status ]"></div>
@@ -114,7 +115,7 @@
 
             applySetting();
         </script>
-        <div class="col-md-3 text-end">
+        <div class="text-end">
             {% if user.is_authenticated %}
                 <span>Logged in as <a href="{% url 'profile' %}">{{ user.username }}</a></span>
                 <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Logout</a>

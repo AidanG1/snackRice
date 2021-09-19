@@ -74,4 +74,4 @@ Finally, run the website on localhost. Visit localhost:8000 in your browser!
 $ python manage.py runserver
 ```
 	
-### Made by snackrice: Aidan, Ian, Karl, and Phoebe
+###  Created by Aidan Gerber, Ian Rundle, Karl Hernandez, and Phoebe Scaccia

@@ -2,7 +2,31 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>{{ dish_appearance.dish.name }}</h1>
+    <h1>{{ dish_appearance.dish.name }}
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+            Edit Image
+        </button>
+    </h1>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <div class="content-section">
+                <form method="POST" action="{% url 'edit_dish' %}?dish={{ dish_appearance.dish.uuid }}">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{ image_form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Submit Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if dish_appearance.dish.image is not None %}
+        <img src="{{ dish_appearance.dish.image }}" alt="{{ dish_appearance.dish.name }}"
+             style="width: 40vw; height: auto">
+    {% endif %}
     <h2>Served at <a href="{% url 'meal_detail' dish_appearance.meal_id %}">{{ dish_appearance.meal }}</a></h2>
     <h3>
         Specific Serving:

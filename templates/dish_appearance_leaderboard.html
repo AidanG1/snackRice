@@ -9,7 +9,7 @@
             {% for dish in dish_appearances %}
                 <div class="card mb-3">
                     <div class="card-body">
-                        <div style="display: inline-block; float: left" class="mr-3">
+                        <div class="mr-3">
                             <h3 class="card-title">{{ dish.rank|ordinal }}:
                                 <a href="{% url 'dish_appearance_detail' dish.pk %}">{{ dish.dish.name }}</a>
                             </h3>

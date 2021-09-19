@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review
+from .models import Review, Dish
 
 
 class ReviewForm(forms.ModelForm):
@@ -22,3 +22,9 @@ class ReviewForm(forms.ModelForm):
             elif stars > 5:
                 self._errors['stars'] = self.error_class(['You must give at maximum 5 stars'])
         return self.cleaned_data
+
+
+class DishImageForm(forms.ModelForm):
+    class Meta:
+        model = Dish
+        fields = ('image',)

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, ListView, DetailView
 from .models import *
 from users.models import Profile
 import datetime
-from .forms import ReviewForm
+from .forms import ReviewForm, DishImageForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import transaction
@@ -29,6 +29,7 @@ class DishAppearanceDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['review_form'] = ReviewForm
+        context['image_form'] = DishImageForm
         return context
 
 
@@ -54,6 +55,7 @@ class Leaderboard(ListView):
             profile.rank = index + 1
         return sorted_profiles
 
+
 class DishAppearanceLeaderboard(ListView):
     model = DishAppearance
     paginate_by = 5
@@ -65,6 +67,12 @@ class DishAppearanceLeaderboard(ListView):
         for index, dish in enumerate(sorted_dishes):
             dish.rank = index + 1
         return sorted_dishes
+
+
+class WeeklyMenu(ListView):
+    model = Meal
+    context_object_name = 'meals'
+    template_name = 'weekly_menu.html'
 
 
 class UserDetail(DetailView):
@@ -95,3 +103,18 @@ def review(request):
     else:
         form = ReviewForm(request.user)
     return render(request, 'dish_appearance_detail.html', {'form': form})
+
+
+@login_required()
+def edit_dish(request):
+    if request.method == "POST":
+        form = DishImageForm(request.POST)
+        if form.is_valid():
+            d = Dish.objects.get(pk=request.GET.get('dish', ''))
+            d.image = form.cleaned_data.get('image')
+            d.save()
+        return redirect('dish_appearance_detail', DishAppearance.objects.filter(dish=d).last().uuid)
+    else:
+        form = DishImageForm()
+
+    return render(request, "edit_dish.html", {"form": form})
