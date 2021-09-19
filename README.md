@@ -44,6 +44,7 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 	- Add food poisoning alert
 	- Adding information for calories for each meal
 	- Suggests what food you should try out in your next adventure - machine learning 😉
+	- Reviews with markdown and likes
 	- See where your friends/followers are eating
 		
 ## 🤖Techstack:<a name="tech"></a>
