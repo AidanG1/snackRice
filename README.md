@@ -24,7 +24,7 @@ $ cd snackRice
 ```
 Then set up your virtual environment and install the requirements.
 ```
-$ pip install -r requirements.txt=
+$ pip install -r requirements.txt
 ```
 Next apply database migrations
 ```
