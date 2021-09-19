@@ -33,9 +33,10 @@ def generate_url(fields, apitype, key):
     return url
 
 
-def maps_recommendations(input):
-    url = generate_url({"input": input, "strictbounds": "true", "location": str(riceu_lat) + "," + str(riceu_long),
-                        "radius": str(riceu_radius)}, "place/autocomplete", google_key)
+def maps_recommendations(location_input):
+    url = generate_url(
+        {"input": location_input, "strictbounds": "true", "location": str(riceu_lat) + "," + str(riceu_long),
+         "radius": str(riceu_radius)}, "place/autocomplete", google_key)
     response = requests.request("GET", url, headers={}, data={})
     response = response.json()
     recommendations = []
@@ -66,17 +67,17 @@ def servery_distances(place_id):
 def optimized_servery_points(servery_dists, servery_scores, walking_factor):
     final_scores = {}
     max_dist = 0
-    max_servery = ""
     for servery, dist in servery_dists.items():
         if dist > max_dist:
             max_dist = dist
-            max_servery = servery
     for key, value in servery_dists.items():
-        final_scores[key] = servery_scores[key] * (1 - walking_factor/10) - servery_dists[key] / max_dist * walking_factor
+        if key in servery_scores:
+            final_scores[key] = servery_scores[key] * (1 - walking_factor / 10) - servery_dists[
+                key] / max_dist * walking_factor
     return final_scores
 
 
-def main():
+def main(location_input):
     current_meals = [servery.current_meal for servery in Servery.objects.all()]
     user_profile = User.objects.get(username='Superuser').profile
     user_preferences = {
@@ -96,6 +97,8 @@ def main():
             user_preferences.pop(key)
     meal_ratings = {}
     for meal in current_meals:
+        if isinstance(meal, type(None)):
+            continue
         meal_ratings[meal.servery.name] = 0
         dishes = DishAppearance.objects.filter(meal=meal)
         for dish in dishes:
@@ -135,10 +138,10 @@ def main():
     print(meal_ratings)
     for servery, meal_rating in meal_ratings.items():
         meal_ratings[servery] = meal_rating / 10.0
-    servery_dists = servery_distances(maps_recommendations(user_profile.default_location)[0]["place_id"])
+    servery_dists = servery_distances(maps_recommendations(location_input)[0]["place_id"])
     servery_scores = optimized_servery_points(servery_dists, meal_ratings, user_profile.walking_factor)
-    print(servery_scores)
+    return servery_scores
 
 
 if __name__ == '__main__':
-    main()
+    main('Baker College')

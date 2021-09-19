@@ -11,5 +11,6 @@ urlpatterns = [
     path('review/', views.review, name='review'),
     path('edit_dish/', views.edit_dish, name='edit_dish'),
     path('weekly_menu/', views.WeeklyMenu.as_view(), name='weekly_menu'),
+    path('get_user_data/', views.get_user_data, name='get_user_data'),
     path('u/<int:pk>/<str:username>', views.UserDetail.as_view(), name='user_detail')
 ]

@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView, DetailView
+from django.shortcuts import render, redirect, HttpResponse
+from django.views.generic import ListView, DetailView
 from .models import *
 from users.models import Profile
-import datetime
+import datetime, json
 from .forms import ReviewForm, DishImageForm
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.db import transaction
+from findbestservery import main
 
 
 class ServeryDetail(DetailView):
@@ -118,3 +118,25 @@ def edit_dish(request):
         form = DishImageForm()
 
     return render(request, "edit_dish.html", {"form": form})
+
+
+def get_user_data(request):
+    max_value = -100
+    correct_key = ''
+    for key, value in main(
+            request.GET.get('location',
+                            'Baker College')).items():  # uses Baker College if location is not in request parameters
+        if value > max_value:
+            max_value = value
+            correct_key = key
+    print(correct_key)
+    current_dishes = Servery.objects.get(name=correct_key).current_dishes
+    return HttpResponse(
+        json.dumps(
+            {
+                'current_dishes': [{'dish': dish.dish.name, 'stars': dish.average_stars, 'reviews': dish.review_count}
+                                   for dish in current_dishes],
+                'servery': correct_key,
+            }
+        ),
+        content_type="application/json")
