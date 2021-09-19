@@ -17,9 +17,22 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 
 ## Instructions on how to host locally
 
+First, clone the repository.
 ```bash
-$ pip install -r requirements.txt
-$ echo "lol who knows"
+$ git clone git@github.com/AidanG1/snackRice.git
+$ cd snackRice
+```
+Then set up your virtual environment and install the requirements.
+```
+$ pip install -r requirements.txt=
+```
+Next apply database migrations
+```
+$ python manage.py migrate
+```
+Finally, run the website on localhost. Visit localhost:8000 in your browser!
+```
+$ python manage.py runserver
 ```
 	
-### Made by snackrice: Aidan, Phoebe, Ian, and Karl
+### Made by snackrice: Aidan, Ian, Karl, and Phoebe
