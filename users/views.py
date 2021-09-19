@@ -28,6 +28,7 @@ def settings(request):
                                 'phone_number': rup.phone_number,
                                 'walking_factor': rup.walking_factor,
                                 'food_factor': rup.food_factor,
+                                'receive_notification_time': rup.receive_notification_time,
                                 'eggs': rup.eggs,
                                 'fish': rup.fish,
                                 'gluten': rup.gluten,
@@ -44,6 +45,7 @@ def settings(request):
             p.phone_number = form.cleaned_data.get('phone_number')
             p.walking_factor = form.cleaned_data.get('walking_factor')
             p.food_factor = form.cleaned_data.get('food_factor')
+            p.receive_notification_time = form.cleaned_data.get('receive_notification_time')
             p.eggs = form.cleaned_data.get('eggs')
             p.fish = form.cleaned_data.get('fish')
             p.gluten = form.cleaned_data.get('gluten')
@@ -61,6 +63,7 @@ def settings(request):
             'phone_number': rup.phone_number,
             'walking_factor': rup.walking_factor,
             'food_factor': rup.food_factor,
+            'receive_notification_time': rup.receive_notification_time,
             'eggs': rup.eggs,
             'fish': rup.fish,
             'gluten': rup.gluten,

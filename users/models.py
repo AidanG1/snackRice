@@ -11,6 +11,8 @@ class Profile(models.Model):
     phone_number = PhoneNumberField(null=True, blank=True)
     walking_factor = models.IntegerField(default=5)
     food_factor = models.IntegerField(default=5)
+    receive_notification_time = models.IntegerField(default=30,
+                                                    help_text='Time in minutes after meal start to receive notification message.')
     preference_choices = (
         ('prefer_tag', 'Prefer Tag'),
         ('no_preference', 'No Preference'),
