@@ -125,7 +125,7 @@ def get_user_data(request):
     correct_key = ''
     for key, value in main(
             request.GET.get('location',
-                            'Baker College')).items():  # uses Baker College if location is not in request parameters
+                            'ChIJf8hcvX7AQIYRH9dtCL4HGXw')).items():  # uses Baker College if location is not in request parameters
         if value > max_value:
             max_value = value
             correct_key = key

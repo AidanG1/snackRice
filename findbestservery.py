@@ -104,44 +104,44 @@ def main(location_input):
         for dish in dishes:
             for key, value in user_preferences.items():
                 if key == 'eggs':
-                    if DishAppearance.dish.eggs != value:
+                    if dish.dish.eggs != value:
                         continue
                 elif key == 'fish':
-                    if DishAppearance.dish.fish != value:
+                    if dish.dish.fish != value:
                         continue
                 elif key == 'gluten':
-                    if DishAppearance.dish.gluten != value:
+                    if dish.dish.gluten != value:
                         continue
                 elif key == 'milk':
-                    if DishAppearance.dish.milk != value:
+                    if dish.dish.milk != value:
                         continue
                 elif key == 'peanuts':
-                    if DishAppearance.dish.peanuts != value:
+                    if dish.dish.peanuts != value:
                         continue
                 elif key == 'shellfish':
-                    if DishAppearance.dish.shellfish != value:
+                    if dish.dish.shellfish != value:
                         continue
                 elif key == 'soy':
-                    if DishAppearance.dish.soy != value:
+                    if dish.dish.soy != value:
                         continue
                 elif key == 'tree_nuts':
-                    if DishAppearance.dish.tree_nuts != value:
+                    if dish.dish.tree_nuts != value:
                         continue
                 elif key == 'vegan':
-                    if DishAppearance.dish.vegan != value:
+                    if dish.dish.vegan != value:
                         continue
                 elif key == 'vegetarian':
-                    if DishAppearance.dish.vegetarian != value:
+                    if dish.dish.vegetarian != value:
                         continue
             meal_ratings[meal.servery.name] += dish.average_stars * dish.review_count + 0.25 * (
                     dish.overall_rating_count_average['count'] * dish.overall_rating_count_average['average'])
     print(meal_ratings)
     for servery, meal_rating in meal_ratings.items():
         meal_ratings[servery] = meal_rating / 10.0
-    servery_dists = servery_distances(maps_recommendations(location_input)[0]["place_id"])
+    servery_dists = servery_distances(location_input)
     servery_scores = optimized_servery_points(servery_dists, meal_ratings, user_profile.walking_factor)
     return servery_scores
 
 
 if __name__ == '__main__':
-    main('Baker College')
+    main('ChIJf8hcvX7AQIYRH9dtCL4HGXw')
