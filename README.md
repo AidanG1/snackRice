@@ -4,7 +4,8 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 ## Future Todos:
 	- Add food poisoning alert
 	- Adding information for calories for each meal
-	- Suggests what food you should try out in your next adventure - machine learning	😉
+	- Suggests what food you should try out in your next adventure - machine learning 😉
+	- See where your friends/followers are eating (pls follow me back jeff 😎)
 		
 ## Techstack:
 	- Django (python)
