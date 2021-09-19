@@ -10,13 +10,12 @@ django.setup()
 from django.contrib.auth.models import User
 from main.models import Servery
 
-
-
 account_sid = os.getenv('account_sid')
 auth_token = os.getenv('auth_token')
 msg_service_sid = os.getenv('msg_service_sid')
-def main(default_location):
 
+
+def main(default_location):
     client = Client(account_sid, auth_token)
 
     max_value = -100

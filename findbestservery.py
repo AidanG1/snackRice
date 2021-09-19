@@ -20,7 +20,7 @@ baker_servery_id = "ChIJuXPL03vAQIYRF9i4a0IUVAE"
 seibel_servery_id = "ChIJGTEMkHnAQIYREr6DQPZulXM"
 
 # google_key = os.environ['GOOGLE_PATH']
-google_key = 'AIzaSyBI58ny7OqVTmEKzqumFPHKlU9B4sgXkvw'
+google_key = os.getenv('GOOGLE_KEY')
 
 
 def generate_url(fields, apitype, key):
