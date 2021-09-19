@@ -1,6 +1,19 @@
 # snackrice.tech
 Built in under 36 hours, Snack Rice is your go-to place for Rice University's serveries. Snack Rice illustrates the weekly menu for all serveries in a concise and easy manner. With the possibility to review all servery food, filter food based on dietary restrictions, and set up custom SMS messages to alert you of your favorite foods, Snack Rice will soon become your favorite site.
 
+## Feature List:
+	- Automated tasks to scrape meal information from dining.rice.edu
+	- Customized meal text notifications using the Twilio API and a Node.js server
+		- Dietary restrictions (vegan, vegetarian, gluten free, and more)
+		- Proximity from serveries (Google Maps API)
+		- Reviews of dishes
+		- Notification timing
+	- Review every dish with star rating and review text
+	- Option for crowdsourcing data and images if Rice website is incorrect
+	- Infinite scroll leaderboard of users with the most reviews
+	- Infinite scroll leaderboard of dishes with the best reviews
+	- Persistent light/dark themes based off user choice and browser settings
+
 ## Future Todos:
 	- Add food poisoning alert
 	- Adding information for calories for each meal
