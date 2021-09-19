@@ -13,7 +13,24 @@ Built in under 36 hours, Snack Rice is your go-to place for Rice University's se
 	- Infinite scroll leaderboard of users with the most reviews
 	- Infinite scroll leaderboard of dishes with the best reviews
 	- Persistent light/dark themes based off user choice and browser settings
-
+	
+## 15 Simple Steps to Communicate Between Text, Django, Flask, and Google Maps
+	1. User sets up account with Snack Rice
+	2. User puts in phone number, preferences about walking and food quality, dietary restrictions, and notification timing
+	3. Django timed task calls notification loop
+	4. Django calls Google Maps API to determine distances between serveries and default locations
+	5. Django determines the best choice based on distances, reviews, and restrictions
+	6. Django sends the best servery choice and menu
+	7. If user is not in default location, user responds to text
+	8. Flask server reads text
+	9. Flask server sends request to Google Maps API
+	10. Flask texts user detailed location choices based on their input
+	11. User responds to text with one of the location choices
+	12. Flask sends text to django with user info and location choice
+	13. Django calls Google Maps API to get distances
+	14. Django determines the best choice based on distances, reviews, and restrictions
+	15. Django sends text with Twilio to user
+	
 ## Future Todos:
 	- Add food poisoning alert
 	- Adding information for calories for each meal
