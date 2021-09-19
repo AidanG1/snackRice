@@ -3,39 +3,45 @@
 
 {% block content %}
     <h1>{{ dish_appearance.dish.name }}</h1>
-    <h2>
+    <h2>Served at <a
+            href="{% url 'meal_detail' dish_appearance.meal_id %}">{{ dish_appearance.meal }}</a></h2>
+    <h3>
+        Specific Serving:
         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
-             alt="Star" class="star">
-        Dish Appearance: {{ dish_appearance.average_stars }}/5 <span
+             alt="Star" class="star">{{ dish_appearance.average_stars }}/5 <span
             class="text-muted">{{ dish_appearance.review_count }} reviews</span>
-    </h2>
-    <h2>
-        <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
-             alt="Star" class="star">
         {% with overall_dish=dish_appearance.overall_rating_count_average %}
-            Overall Dish: {{ overall_dish.average }}/5 <span
+            All Times Served:
+            <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-gold-starstargeometricallydecagonconcavestardomyellow-stargold-1421526501440ojzfo.png&f=1&nofb=1"
+                 alt="Star" class="star">{{ overall_dish.average }}/5 <span
                 class="text-muted">{{ overall_dish.count }} reviews</span>
         {% endwith %}
-    </h2>
+    </h3>
     <div class="rounded shadow-sm p-4">
-        <h5 class="mb-1">All Ratings and Reviews</h5>
-        {% for review in dish_appearance.reviews %}
-            <div class="reviews-members pt-3 pb-2">
-                <div class="media">
-                    <div class="media-body">
-                        <div class="reviews-members-header">
-                            <h4 class="mb-1"><a href="#">{{ review.user.username }}</a></h4>
-                            <h6>{{ review.stars }} Stars</h6>
-                            <p class="text-gray">{{ review.review_datetime }}</p>
-                        </div>
-                        <div class="reviews-members-body">
-                            <p>{{ review.review_text }}</p>
+        <h4 class="mb-1">All Ratings and Reviews</h4>
+        {% if dish_appearance.review_count == 0 %}
+            <h5>No reviews yet</h5>
+        {% else %}
+            {% for review in dish_appearance.reviews %}
+                <div class="reviews-members pt-1 pb-1">
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="reviews-members-header">
+                                <h4><a
+                                        href="{% url 'user_detail' review.user.pk review.user.username %}">{{ review.user.username }}</a>
+                                </h4>
+                                <h6>{{ review.stars }} Stars</h6>
+                                <p class="text-gray">{{ review.review_datetime }}</p>
+                            </div>
+                            <div class="reviews-members-body">
+                                <p>{{ review.review_text }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-        {% endfor %}
+                <hr>
+            {% endfor %}
+        {% endif %}
     </div>
     <div class="rounded shadow-sm p-4 mb-2">
         <h5 class="mb-2">Leave Review for {{ dish_appearance.dish.name }}</h5>

@@ -22,8 +22,8 @@
     --button-background: var(--color-dark);
     --button-color: var(--color-light);
     --border-color: var(--color-dark-alpha);
-    --a-default-color: #a5d1ff;
-    --a-hover-color: #4290d0;
+    --a-default-color: #4290d0;
+    --a-hover-color: #8bbcf1;
     --nav-link-color: #171717;
     --nav-link-hover-color: #464646;
     --rounded-border-color: #2c9d2c;
@@ -160,20 +160,20 @@ footer {
 .card-group {
     display: inline-block;
 }
-@media (max-width: 720px) {
-    .card-group {
-        width: 100%;
-    }
-}
+/*@media (max-width: 720px) {*/
+/*    .card-group {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
 
-@media (min-width: 720px) and (max-width: 1300px) {
-    .card-group {
-        width: 47%;
-    }
-}
+/*@media (min-width: 720px) and (max-width: 1300px) {*/
+/*    .card-group {*/
+/*        width: 47%;*/
+/*    }*/
+/*}*/
 
-@media (min-width: 1300px) {
-    .card-group {
-        width: 32%;
-    }
-}
+/*@media (min-width: 1300px) {*/
+/*    .card-group {*/
+/*        width: 32%;*/
+/*    }*/
+/*}*/

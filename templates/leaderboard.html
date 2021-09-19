@@ -11,10 +11,10 @@
                     <div class="card-body">
                         <div style="display: inline-block; float: left" class="mr-3">
                             <h3 class="card-title">{{ profile.rank|ordinal }}:
-                                <a href="{% url 'profile_detail' profile.id %}">{{ profile.user|slice:":30" }}</a>
+                                <a href="{% url 'user_detail' profile.user.pk profile.user.username %}">{{ profile.user|slice:":30" }}</a>
                             </h3>
-                            <p class="card-text">Number of Reviews: {{ profile.number_of_reviews }},
-                            <p class="card-text">Average Stars: {{ profile.average_stars|floatformat:2 }}%</p>
+                            <p class="card-text">Number of Reviews: {{ profile.review_count }}
+                            <p class="card-text">Average Stars: {{ profile.average_stars|floatformat:2 }}</p>
                         </div>
                     </div>
                 </div>
