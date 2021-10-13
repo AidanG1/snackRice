@@ -1,4 +1,5 @@
 # <a href="https://snackrice.tech/" target="_blank">🍚Snack Rice</a>
+###  Created by Aidan Gerber, Ian Rundle, Karl Hernandez, and Phoebe Scaccia
 # Table of Contents
 1. [About](#quick-info)
 2. [Feature List](#feature)
@@ -87,5 +88,3 @@ After that, use ngrok to open port 5050 to the internet.
 $ ngrok.exe http 5050
 ```
 Copy the url from ngrok into the Twilio GUI and you are now set up to receive notifications!
-	
-###  Created by Aidan Gerber, Ian Rundle, Karl Hernandez, and Phoebe Scaccia
